@@ -15,7 +15,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'sudo rm -rf /var/www/jenkins-react-app'
-                sh 'sudo cp -r ${WORKSPACE}/build/ /var/www/jenkins-react-app/'
+                sh 'scp -i /tmp/ubuntu-devsecops-key.pem -r ${WORKSPACE}/build/ azureuser@20.204.141.43:/var/www/jenkins-react-app/'
             }
         }
 
