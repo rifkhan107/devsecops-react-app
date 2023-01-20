@@ -23,7 +23,7 @@ pipeline {
 
         stage('Security Testing') {
             steps {
-                sh 'owasp-zap-cli quick-scan --start-options "-config api.disablekey=true" --spider http://20.204.141.43:3000/my-react-app'
+                sh 'owasp-zap-cli quick-scan --start-options "-config api.disablekey=true" --spider http://20.204.141.43:3000/'
             }
         }
     }
