@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '<your_credentials_id>', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'ubuntu-root-permissions', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                 sh "sudo -u ${USERNAME} -i -- sh -c 'rm -rf /var/www/jenkins-react-app'"
                 sh "sudo -u ${USERNAME} -i -- sh -c 'rsync -avz ${WORKSPACE}/build/ /var/www/jenkins-react-app/'"
                 }
