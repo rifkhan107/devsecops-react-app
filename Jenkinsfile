@@ -3,14 +3,13 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git url: 'https://github.com/rifkhan107/devsecops-react-app.git', branch: 'master'
+                git url: 'https://github.com/rifkhan107/React-application-DevSecOps-project.git', branch: 'master'
             }
         }
         stage('Build') {
             steps {
                 sh 'npm install'
                 sh 'npm test'
-                if (currentBuild.getResult() == hudson.model.Result.FAILED) {
                 sh 'npm run build'
             }
         }
@@ -27,6 +26,4 @@ pipeline {
             }
         }
     }
-    
- }
 }
