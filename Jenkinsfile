@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh 'npm install'
                 sh 'npm test'
-                if (currentBuild.result == 'FAILURE') {
+                if (currentBuild.result == 'FAILED') {
                     error "Tests failed"
                 }
                 sh 'npm run build'
