@@ -15,8 +15,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'root-key', keyFileVariable: 'PRIVATE_KEY')]) {
-                sh 'sudo rm -rf /var/www/jenkins-react-app' 
                 sh 'sudo rsync -avz ${WORKSPACE}/build/ /var/www/jenkins-react-app/'
+                sh 'sudo rm -rf /var/www/jenkins-react-app' 
                 }
             }
          }
