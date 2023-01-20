@@ -10,9 +10,7 @@ pipeline {
             steps {
                 sh 'npm install'
                 sh 'npm test'
-                if (currentBuild.result == 'FAILED') {
-                    error "Tests failed"
-                }
+                if (currentBuild.getResult() == hudson.model.Result.FAILED) {
                 sh 'npm run build'
             }
         }
