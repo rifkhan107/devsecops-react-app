@@ -14,12 +14,12 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'sudo rm -rf /var/www/jenkins-react-app'
-                withCredentials([sshUserPrivateKey(credentialsId: 'ubuntu-root-permissions', keyFileVariable: 'SSH_KEY_FILE')]) {
-                sh "sudo rsync -avz ${WORKSPACE}/build/ /var/www/jenkins-react-app/ -e 'ssh -i ${SSH_KEY_FILE}'"
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '<your_credentials_id>', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                sh "sudo -u ${USERNAME} -i -- sh -c 'rm -rf /var/www/jenkins-react-app'"
+                sh "sudo -u ${USERNAME} -i -- sh -c 'rsync -avz ${WORKSPACE}/build/ /var/www/jenkins-react-app/'"
+                }
             }
-        }
-    }
+         }
 
         stage('Security Testing') {
             steps {
