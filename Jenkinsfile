@@ -23,7 +23,7 @@ pipeline {
 
         stage('Security Testing') {
             steps {
-                sh 'zap-cli quick-scan --start-options "-config api.disablekey=true" --spider http://20.204.141.43:80/'
+                sh 'zap-cli quick-scan --start-options "-config api.disablekey=true" --spider https://techventuras.com/'
                 publishHTML target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '.', reportFiles: 'zap-report.html', reportName: 'ZAP Report']
             }
          }
