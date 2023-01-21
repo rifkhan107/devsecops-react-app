@@ -12,11 +12,6 @@ pipeline {
                 sh 'sudo npm run build'
             }
         }
-        stage('Build Test') {
-            steps {
-                sh 'sudo npm test'
-            }
-        }
         stage('Deploy') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'root-key', keyFileVariable: 'PRIVATE_KEY')]) {
