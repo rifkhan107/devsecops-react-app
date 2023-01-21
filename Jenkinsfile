@@ -24,7 +24,7 @@ pipeline {
         stage('Security Testing') {
             steps {
                 sshagent(['zap-ssh']) {
-                sh 'ssh -o  StrictHostKeyChecking=no azureuser@20.204.141.43 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://20.204.141.43:3000/" || true'
+                 sh 'ssh -o  StrictHostKeyChecking=no azureuser@20.204.141.43 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://20.204.141.43:80/" || true'
                 }
             }
         }
