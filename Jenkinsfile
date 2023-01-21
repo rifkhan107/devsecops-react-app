@@ -24,9 +24,9 @@ pipeline {
         stage('Security Testing') {
             steps {
                 sh 'zap-cli quick-scan --start-options "-config api.disablekey=true" --spider http://20.204.141.43:80/'
-                }
             }
-        }
+         }
     }
 }
+
 
