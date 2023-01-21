@@ -23,7 +23,9 @@ pipeline {
 
         stage('Security Testing') {
             steps {
-                echo 'zap-cli quick-scan --start-options "-config api.disablekey=true" --spider http://20.204.141.43:3000/'
+                withCredentials([sshUserPrivateKey(credentialsId: 'root-key', keyFileVariable: 'PRIVATE_KEY')]) {
+                sh 'ssh -o  StrictHostKeyChecking=no azureuser@20.204.141.43 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://20.204.141.43:3000/" || true'
+                }
             }
         }
     }
